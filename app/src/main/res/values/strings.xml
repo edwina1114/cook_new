@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FAvvvv</string>
+    <string name="easy">便當</string>
+    <string name="sidedish">配菜</string>
+    <string name="title">title</string>
+    <string name="foodnames">食物名稱</string>
+    <string name="steps">步驟</string>
+    <string name="need_food">/ 材料 /</string>
+    <string name="sauce">/ 調味料 /</string>
+    <string name="company">©橙嗜食驗©</string>
+    <string name="detailimage">detailimage</string>
+    <string name="dsteps">詳細步驟</string>
+    <string name="logo">橙 嗜 食 驗</string>
+    <string name="image">image</string>
+</resources>
