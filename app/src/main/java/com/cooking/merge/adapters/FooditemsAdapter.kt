@@ -21,7 +21,7 @@ class FooditemsAdapter(
     var clickListener: OnFoodItemClickListener,
     private var fooditems: ArrayList<FooditemsModel>
 ) : RecyclerView.Adapter<FooditemsAdapter.FoodItemHolder>() {
-    //viewbinding
+
     lateinit var binding: CardviewLayoutBinding
     lateinit var favdb: FavDataBase
 
@@ -54,11 +54,9 @@ class FooditemsAdapter(
         holder.icons.setImageResource(fooditems[position].iconsChar)
         holder.title.text = fooditems[position].alphaChar
         readCursorData(fooditems[position], holder)
-
         holder.init(fooditems[position], clickListener)
 
     }
-
 
 
     /**
@@ -68,7 +66,7 @@ class FooditemsAdapter(
     inner class FoodItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var icons: ImageView = itemView.icons_image
         var title: TextView = itemView.title
-        val favBtn: Button = itemView.cardview_fav_btn
+        val favBtn: Button = itemView.cardview_fav
 
         init {
             favBtn.setOnClickListener { favonClick(it) }
@@ -76,15 +74,17 @@ class FooditemsAdapter(
 
         private fun favonClick(itemView: View) {
             val foodies: FooditemsModel = fooditems.get(adapterPosition)
-            if (foodies.favStatus.equals("0"))
-            {
-                foodies.favStatus="1"
-                favdb.insertIntoTheDatabase(foodies.alphaChar, foodies.iconsChar, foodies.key_id, foodies.favStatus )
+            if (foodies.favStatus.equals("0")) {
+                foodies.favStatus = "1"
+                favdb.insertIntoTheDatabase(
+                    foodies.alphaChar,
+                    foodies.iconsChar,
+                    foodies.key_id,
+                    foodies.favStatus
+                )
                 favBtn.setBackgroundResource(R.drawable.fav_red)
 
-            }
-            else
-            {
+            } else {
                 foodies.favStatus = "0"
                 favdb.remove_fav(foodies.key_id)
                 favBtn.setBackgroundResource(R.drawable.fav_shadow)

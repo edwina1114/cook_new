@@ -97,7 +97,6 @@
                 android:id="@+id/TV_food_need"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="30dp"
@@ -109,7 +108,6 @@
                 app:layout_constraintTop_toTopOf="@+id/need"
                 tools:text="食材" />
 
-            <!--android:onClick="clicklink"-->
             <ImageView
                 android:id="@+id/IV_detailsimage"
                 android:layout_width="400dp"
@@ -118,7 +116,6 @@
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="@string/detailimage"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,13 +128,11 @@
                 android:layout_height="71dp"
                 android:layout_marginStart="212dp"
                 android:layout_marginTop="30dp"
-
                 android:background="@drawable/buttonstyle"
                 android:text="@string/dsteps"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 android:textStyle="bold"
-
                 app:backgroundTint="#DC8E76"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/IV_detailsimage" />
@@ -157,11 +152,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/TV_sauce"
                 app:layout_constraintVertical_bias="0.921" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 
 

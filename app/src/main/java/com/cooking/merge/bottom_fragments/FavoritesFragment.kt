@@ -1,5 +1,6 @@
 package com.cooking.merge.bottom_fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,27 +11,39 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cooking.merge.R
 import com.cooking.merge.adapters.FavitemsAdapter
+import com.cooking.merge.adapters.OnFavItemClickListener
+import com.cooking.merge.adapters.OnFoodItemClickListener
 
 import com.cooking.merge.favoriteDataBase.FavDataBase
+import com.cooking.merge.food_fragment.FoodDetailsf
 import com.cooking.merge.models.FavitemsModel
+import com.cooking.merge.models.FooditemsModel
 import kotlinx.android.synthetic.main.recycler_layout.view.*
 
-class FavoritesFragment: Fragment() {
+class FavoritesFragment: Fragment()  , OnFavItemClickListener {
     private var recyclerView: RecyclerView? = null
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var favList: ArrayList<FavitemsModel>
     private lateinit var favAdapters: FavitemsAdapter
     private lateinit var favdb: FavDataBase
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View
     {
-        favdb = context?.let { FavDataBase(it) }!!
-        recyclerView = view?.my_recycler_view
+        return inflater.inflate(R.layout.recycler_layout, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        //favdb = context?.let { FavDataBase(it) }!!
+        favdb = FavDataBase(requireContext())
+        recyclerView = view.my_recycler_view
 
         ///// design the gridlayout & set recyclerview /////
         gridLayoutManager = GridLayoutManager(
-            requireContext(), 4,
+            requireContext(), 3,
             LinearLayoutManager.VERTICAL, false
         )
         recyclerView?.layoutManager = gridLayoutManager
@@ -39,30 +52,8 @@ class FavoritesFragment: Fragment() {
 
         loadData()
 
-        favAdapters = FavitemsAdapter(requireContext(), favList)   //adapter按照位置擺放foodlist裡的所有物品
+        favAdapters = FavitemsAdapter(requireContext(), this, favList)   //adapter按照位置擺放foodlist裡的所有物品
         recyclerView?.adapter = favAdapters
-
-        return inflater.inflate(R.layout.fav_cardview_layout, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-//        favdb = context?.let { FavDataBase(it) }!!
-//        recyclerView = view.my_recycler_view
-//
-//        ///// design the gridlayout & set recyclerview /////
-//        gridLayoutManager = GridLayoutManager(
-//            requireContext(), 4,
-//            LinearLayoutManager.VERTICAL, false
-//        )
-//        recyclerView?.layoutManager = gridLayoutManager
-//        recyclerView?.setHasFixedSize(true)
-//        ///// design the gridlayout & set recyclerview /////
-//
-//        loadData()
-//
-//        favAdapters = FavitemsAdapter(requireContext(), favList)   //adapter按照位置擺放foodlist裡的所有物品
-//        recyclerView?.adapter = favAdapters
 
     }
 
@@ -85,6 +76,13 @@ class FavoritesFragment: Fragment() {
             db.close()
         }
 
+    }
+
+    override fun onItemClick(item: FavitemsModel, position: Int) {
+
+        val intent = Intent(context, FoodDetailsf::class.java)
+
+        startActivity(intent)
     }
 
 }

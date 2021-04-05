@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 class HomeFragment : Fragment(){
-    lateinit var myFragment : View
     lateinit var tabLayout : TabLayout
     lateinit var viewPager : ViewPager
     private lateinit var tablayoutAdapter : TablayoutAdapter
@@ -22,8 +21,7 @@ class HomeFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        myFragment = inflater.inflate(R.layout.fragment_home, container, false)
-        return myFragment
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {

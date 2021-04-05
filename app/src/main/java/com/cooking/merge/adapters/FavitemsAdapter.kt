@@ -8,22 +8,24 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.cooking.merge.databinding.FavCardviewLayoutBinding
+import com.cooking.merge.databinding.FragmentFavoriteBinding
 import com.cooking.merge.favoriteDataBase.FavDataBase
 import com.cooking.merge.models.FavitemsModel
-import kotlinx.android.synthetic.main.fav_cardview_layout.view.*
+import com.cooking.merge.models.FooditemsModel
+import kotlinx.android.synthetic.main.fragment_favorite.view.*
 
-class FavitemsAdapter(private var context: Context,
-                      private var favitems: ArrayList<FavitemsModel>)
-    : RecyclerView.Adapter<FavitemsAdapter.FavViewHolder>() {
+class FavitemsAdapter(
+    private var context: Context,
+    var favclickListener: OnFavItemClickListener,
+    private var favitems: ArrayList<FavitemsModel>
+) : RecyclerView.Adapter<FavitemsAdapter.FavViewHolder>() {
 
-    lateinit var binding: FavCardviewLayoutBinding
+    lateinit var binding: FragmentFavoriteBinding
     lateinit var favdb: FavDataBase
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavViewHolder {
         favdb = FavDataBase(context)
-        binding = FavCardviewLayoutBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding = FragmentFavoriteBinding.inflate(LayoutInflater.from(context), parent, false)
         return FavViewHolder(binding.root)
     }
 
@@ -34,6 +36,9 @@ class FavitemsAdapter(private var context: Context,
     override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
         holder.favIMV.setImageResource(favitems[position].fav_image)
         holder.favTV.text = favitems[position].fav_title
+
+        holder.init(favitems[position], favclickListener)
+
     }
 
     /**
@@ -59,7 +64,20 @@ class FavitemsAdapter(private var context: Context,
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, favitems.size)
         }
+        //////// 點進內頁的clicklistener func ////////
+        fun init(item: FavitemsModel, action: OnFavItemClickListener) {
+            favTV.text = item.fav_title
+            favIMV.setImageResource(item.fav_image)
+
+            itemView.setOnClickListener {
+                action.onItemClick(item, adapterPosition)
+            }
+        }
+        //////// 點進內頁的clicklistener func ////////
 
     }
 
+}
+interface OnFavItemClickListener {
+    fun onItemClick(item: FavitemsModel, position: Int)
 }

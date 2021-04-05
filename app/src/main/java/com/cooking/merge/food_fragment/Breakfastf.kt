@@ -144,14 +144,17 @@ class Breakfastf : Fragment() , OnFoodItemClickListener{
     override fun onItemClick(item: FooditemsModel, position: Int)
     {
         val intent = Intent(context, FoodDetailsf::class.java)
+
+
         intent.putExtra("FOODIMAGE", item.iconsChar.toString())
         intent.putExtra("FOODNAME", item.alphaChar)
         intent.putExtra("FOODINGREDIENT", item.ingredient)
         intent.putExtra("FOODSAUCE", item.sauce)
         intent.putExtra("FOODLINK", item.link)
-
         startActivity(intent)
+
     }
+
 
 
 }

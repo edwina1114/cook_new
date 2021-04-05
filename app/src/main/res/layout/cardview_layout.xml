@@ -42,7 +42,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/cardview_fav_btn"
+                android:id="@+id/cardview_fav"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_below="@+id/icons_image"
