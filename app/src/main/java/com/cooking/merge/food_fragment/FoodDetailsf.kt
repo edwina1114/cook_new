@@ -1,14 +1,12 @@
 package com.cooking.merge.food_fragment
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.cooking.merge.R
+import com.cooking.merge.web.Webf
 import kotlinx.android.synthetic.main.fooditems_details.*
 
 
