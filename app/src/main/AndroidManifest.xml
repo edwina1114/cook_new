@@ -24,13 +24,15 @@
 
         <activity android:name=".web.Webf" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+
+        <activity android:name=".welcome_page.Welcomef">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".food_fragment.FoodDetailsf"
             android:label="Details"
